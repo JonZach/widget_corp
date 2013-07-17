@@ -1,3 +1,4 @@
+<?php require_once("../includes/sessions.php"); ?>
 <?php require_once("../includes/db_connection.php"); ?>
 <?php require_once("../includes/functions.php"); ?>
 
@@ -19,10 +20,11 @@
 		// Test if there was a query error
 		if ($result) {
 			// Success
+			$_SESSION["message"] = "Subject Created!";
 			redirect_to("manage_content.php");
 		} else {
 			// Failure
-			// $message = "Subject creation failed";
+			$_SESSION["message"] = "OOPS...Subject creation failed";
 			redirect_to("new_subject.php");
 		}
 	} else {

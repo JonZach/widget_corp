@@ -1,4 +1,17 @@
 <?php
+	function redirect_to($new_location) {
+		header("Location: " . $new_location);
+		exit;
+	}
+
+	// Preventing errors from SQL Injection
+	function mysql_formatter($string) {
+		global $connection;
+		
+		$escaped_string = mysqli_real_escape_string($connection, $string);
+		return $escaped_string;
+	}
+
 	function confirm_query($result_set) {
 		if (!$result_set) {
 			die("Database query failed.");
@@ -70,7 +83,7 @@
 	function find_selected_page() {
 		global $current_subject;
 		global $current_page;
-		
+
 		if (isset($_GET["subject"])) {
 			$current_subject = find_subject_by_id($_GET["subject"]);
 			$current_page = null;

@@ -11,6 +11,17 @@
 			$_SESSION["message"] = null;
 			
 			return $output;
-		} 
+		}
+	}
+
+	function errors() {
+		if (isset($_SESSION["errors"])) {
+			$errors = $_SESSION["errors"];
+
+			// clear message once displayed once
+			$_SESSION["errors"] = null;
+			
+			return $errors;
+		}
 	}
 ?>
